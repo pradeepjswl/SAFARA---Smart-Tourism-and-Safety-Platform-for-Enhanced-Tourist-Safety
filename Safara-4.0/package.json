@@ -1,0 +1,34 @@
+{
+  "name": "safara",
+  "private": true,
+  "version": "2.0.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=@safetrail/frontend\" \"npm run dev --workspace=@safetrail/backend\" \"npm run dev --workspace=@safetrail/authority\" \"npm run dev --workspace=@safetrail/chatbot\"",
+    "dev:frontend": "npm run dev --workspace=@safetrail/frontend",
+    "dev:authority": "npm run dev --workspace=@safetrail/authority",
+    "dev:backend": "npm run dev --workspace=@safetrail/backend",
+    "dev:chatbot": "npm run dev --workspace=@safetrail/chatbot",
+    "build": "npm run build --workspace=@safetrail/frontend && npm run build --workspace=@safetrail/backend && npm run build --workspace=@safetrail/authority",
+    "start": "npm run start --workspace=@safetrail/backend",
+    "start:chatbot": "npm run start --workspace=@safetrail/chatbot",
+    "check": "npm run check --workspace=@safetrail/backend"
+  },
+  "devDependencies": {
+    "@types/compression": "^1.8.1",
+    "@types/cors": "^2.8.19",
+    "@types/multer": "^2.0.0",
+    "@types/pdf-parse": "^1.1.5",
+    "concurrently": "^9.2.1",
+    "tsx": "^4.20.5",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "jspdf": "^3.0.3",
+    "jspdf-autotable": "^5.0.2",
+    "sonner": "^2.0.7"
+  }
+}

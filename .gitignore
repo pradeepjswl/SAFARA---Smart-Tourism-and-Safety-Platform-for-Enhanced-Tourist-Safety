@@ -1,0 +1,101 @@
+###########################################
+# Logs
+###########################################
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+###########################################
+# Dependency directories (any depth)
+###########################################
+node_modules/
+
+###########################################
+# Build outputs
+###########################################
+dist/
+build/
+out/
+coverage/
+.nyc_output
+web-build/
+
+###########################################
+# Bundler / Dev Caches
+###########################################
+.vite/
+.parcel-cache/
+.cache/
+.turbo/
+.metro-health-check*
+
+###########################################
+# OS & Editor files
+###########################################
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+*.orig.*
+
+###########################################
+# Environment Files
+###########################################
+.env
+.env.*
+!.env.example
+.env.local
+.envrc
+.env*.local
+
+###########################################
+# Runtime Data
+###########################################
+*.pid
+*.pid.lock
+*.seed
+
+###########################################
+# Misc
+###########################################
+*.tgz
+*.swp
+*.swo
+*.pem
+app-example
+
+###########################################
+# Expo & React Native
+###########################################
+.expo/
+expo-env.d.ts
+.expo-shared/
+.expo/web-build/
+
+###########################################
+# Native (Android / iOS)
+###########################################
+ios/
+android/
+.kotlin/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+###########################################
+# TypeScript
+###########################################
+*.tsbuildinfo
+
+###########################################
+# Project-specific
+###########################################
+Safaea-4.0/apps/backend/secure_storage/
+
+# DO NOT ignore Drizzle migrations
+# drizzle/

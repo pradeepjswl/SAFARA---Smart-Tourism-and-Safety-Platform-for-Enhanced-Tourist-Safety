@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String?  @unique
+  phone        String?  @unique
+  passwordHash String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  sessions             Session[]
+  trips                TouristTrip[]
+  docs                 UserDoc[]
+  personalIdApplications PersonalIdApplication[]
+}
+
+model Session {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  refreshHash String
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+}
+
+model OtpRequest {
+  id        String   @id @default(uuid())
+  phone     String
+  codeHash  String
+  consumed  Boolean  @default(false)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model PersonalIdApplication {
+  id               String            @id @default(uuid())
+  userId           String?
+  user             User?             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName         String
+  mobile           String
+  email            String
+  mobileVerified   Boolean           @default(false)
+  emailVerified    Boolean           @default(false)
+  documentVerified Boolean           @default(false)
+  status           String            @default("PENDING_VERIFICATION")
+  aadhaarHash      String?
+  dob              String?
+  personalId       String?           @unique
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  trips TouristTrip[]
+}
+
+model TouristTrip {
+  tid          String                @id @unique
+  userId       String
+  user         User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  holderPid    String
+  personalId   PersonalIdApplication @relation(fields: [holderPid], references: [id], onDelete: Restrict)
+  travelerType String                @default("INDIAN")
+  startDate    DateTime
+  endDate      DateTime
+  destination  String?
+  status       String                @default("SCHEDULED")
+  itinerary    String?
+  agencyId     String?
+  homeCity     String?
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+}
+
+model CommunityAlert {
+  id          String   @id @default(uuid())
+  title       String
+  content     String
+  category    String   // 'news', 'alert', 'event'
+  severity    String?  // 'low', 'high', 'critical'
+  location    String?
+  createdAt   DateTime @default(now())
+}
+
+model Feedback {
+  id        String   @id @default(uuid())
+  userId    String
+  content   String
+  rating    Int
+  createdAt DateTime @default(now())
+}
+
+model UserDoc {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  mime        String
+  size        Int
+  secureUrl   String
+  publicId    String?
+  folder      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
