@@ -104,11 +104,26 @@ console.log("HELLO WORLD: EXACTLY STARTING SERVER.TS");
 
 
 
-
 import { env } from './config/env.js';
 import { buildApp } from './app.js';
 import { prisma } from './libs/prisma.js';
 import { Server as SocketIOServer } from 'socket.io';
+
+
+import express from "express";
+import cors from "cors";
+import translateRoute from "./routes/translate.js";
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+app.use("/api/translate", translateRoute);
+
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
+});
 
 const start = async () => {
   await prisma.$connect();

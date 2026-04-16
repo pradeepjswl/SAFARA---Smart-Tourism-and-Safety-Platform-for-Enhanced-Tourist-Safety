@@ -7,7 +7,7 @@ const Env = z.object({
   MONGODB_URI: z.string(),
   ACCESS_TOKEN_SECRET: z.string(),
   REFRESH_TOKEN_SECRET: z.string(),
-  CORS_ORIGIN: z.string().default('http://localhost:5173')
+  CORS_ORIGIN: z.string().default('http://localhost:5174')
 });
 
 export const env = Env.parse(process.env);

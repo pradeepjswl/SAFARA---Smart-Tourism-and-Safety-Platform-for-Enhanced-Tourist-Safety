@@ -99,3 +99,16 @@ Safaea-4.0/apps/backend/secure_storage/
 
 # DO NOT ignore Drizzle migrations
 # drizzle/
+
+
+# Ignore database
+*.db
+
+# Ignore backend storage
+Safara-4.0/apps/backend/secure_storage/
+
+# Ignore env files
+.env
+
+# Node modules
+node_modules/
